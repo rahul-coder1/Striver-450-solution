@@ -1,7 +1,7 @@
 package binarySearch1D;
 
 public class SearchInSortedRotatedArr2 {
-	//TC- logN
+	//TC- logN average case, worst case = ~O(N/2)  ex - [3,1,3,3,3,3,3,3] while shrinking you subtract low and high 
     public static boolean search(int[] nums, int target) {
         int low=0,high=nums.length-1,mid=0;
 
