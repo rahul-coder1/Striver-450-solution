@@ -12,10 +12,8 @@ public class FindHowManyTimesArrRotated {
 		while(low<=high) {
 			mid=low+(high-low)/2;
 			/*
-			a little optimization, not needed, after the half which is sorted is eliminated
-			then the other half either low=mid+1, or high-mid-1 will be the sorted 
-			other half their low will be that half min, so compare the two mins
-			ex- [3,1,2]
+			 find minimum and whatever the index is of minimum return that since in sorted and rotated array the minimum element's index
+			 represents the rotation point
 			*/
 			if(nums.get(low)<=nums.get(high)) {
                 if(nums.get(low)<ans){
