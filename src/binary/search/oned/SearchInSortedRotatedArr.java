@@ -1,4 +1,4 @@
-package binarySearch1D;
+package binary.search.oned;
 
 public class SearchInSortedRotatedArr {
 	public static int search(int[] nums, int target) {

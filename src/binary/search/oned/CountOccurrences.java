@@ -1,6 +1,6 @@
-package binarySearch1D;
+package binary.search.oned;
 
-public class countOccurrences {
+public class CountOccurrences {
 	 public static int firstOcc(int[] arr, int target) {
 			int res = -1;
 			int low=0, high=arr.length-1, mid=0;
@@ -18,7 +18,9 @@ public class countOccurrences {
 		}
 	    public static int lastOcc(int[] arr, int target) {
 			int res = -1;
-			int low=0, high=arr.length-1, mid=0;
+			int low=0;
+			int high=arr.length-1;
+			int mid=0;
 			
 			while(low<=high){
 				mid=low+(high-low)/2;

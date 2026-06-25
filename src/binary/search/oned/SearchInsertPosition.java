@@ -1,4 +1,4 @@
-package binarySearch1D;
+package binary.search.oned;
 
 public class SearchInsertPosition {
 	public static void main(String[] args) {

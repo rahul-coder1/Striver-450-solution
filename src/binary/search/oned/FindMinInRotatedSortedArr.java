@@ -1,4 +1,4 @@
-package binarySearch1D;
+package binary.search.oned;
 
 public class FindMinInRotatedSortedArr {
 	

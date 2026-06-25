@@ -1,4 +1,4 @@
-package binarySearch1D;
+package binary.search.oned;
 
 public class UpperBound {
 	//same as LowerBound only change is arr[mid]>x;
