@@ -8,10 +8,14 @@ public class RomanToInteger {
         nums.put('D',500);nums.put('M',1000);
         int value=0;
         for(int i=0;i<s.length();i++){
-            if(i<s.length()-1 && nums.get(s.charAt(i))<nums.get(s.charAt(i+1))){
-                value+=nums.get(s.charAt(i+1))-nums.get(s.charAt(i));
-                i++;
-            }else{
+//            if(i<s.length()-1 && nums.get(s.charAt(i))<nums.get(s.charAt(i+1))){
+//                value+=nums.get(s.charAt(i+1))-nums.get(s.charAt(i));
+//                i++;
+//            }
+        	if(i<s.length()-1 && nums.get(s.charAt(i))<nums.get(s.charAt(i+1))){
+                value-=nums.get(s.charAt(i));
+            }
+            else{
                 value+=nums.get(s.charAt(i));
             }
         }
