@@ -2,25 +2,30 @@ package string.medium;
 import java.util.*;
 public class RomanToInteger {
 	//TC - o(n), SC - o(1)
+    private static int value(char c){
+        return switch(c){
+            case 'I'->1;
+            case 'V' -> 5;
+            case 'X' -> 10;
+            case 'L' -> 50;
+            case 'C' -> 100;
+            case 'D' -> 500;
+            case 'M' -> 1000;
+            default->1000;
+        };
+    }
     public static int romanToInt(String s) {
-        Map<Character,Integer> nums = new HashMap<>();
-        nums.put('I',1);nums.put('V',5);nums.put('X',10);nums.put('L',50);nums.put('C',100);
-        nums.put('D',500);nums.put('M',1000);
-        int value=0;
+        int res=0;
         for(int i=0;i<s.length();i++){
-//            if(i<s.length()-1 && nums.get(s.charAt(i))<nums.get(s.charAt(i+1))){
-//                value+=nums.get(s.charAt(i+1))-nums.get(s.charAt(i));
-//                i++;
-//            }
-        	if(i<s.length()-1 && nums.get(s.charAt(i))<nums.get(s.charAt(i+1))){
-                value-=nums.get(s.charAt(i));
-            }
-            else{
-                value+=nums.get(s.charAt(i));
+            if(i<s.length()-1 && value(s.charAt(i))<value(s.charAt(i+1))){
+                res+=value(s.charAt(i+1))-value(s.charAt(i));
+                i++;
+            }else{
+                res+=value(s.charAt(i));
             }
         }
 
-        return value;
+        return res;
     }
     
     public static void main(String[] args) {
