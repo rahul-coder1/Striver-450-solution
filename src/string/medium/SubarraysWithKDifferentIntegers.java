@@ -93,7 +93,42 @@ public class SubarraysWithKDifferentIntegers {
     
   //----------------------------------------------------------------------------------------------------------------
     
-    
+    public int calculateDistinctSubarrays3PointerUsingArray(int[]nums,int k){
+    	int l_far=0,l_near=0,r=0;
+    	int distinct=0;
+    	int n = nums.length;
+    	int count=0;
+    	int[] freq = new int[n+1];
+    	while(r<n) {
+    		//adding the element to frequency array
+    		freq[nums[r]]+=1;
+    		if(freq[nums[r]]==1) distinct+=1; //handles no. of unique element
+    		
+    		//handles invalid subArray
+    		//handle the case when map size exceeds the k, that is more than k unique element present in map
+    		while(distinct>k) {
+    			freq[nums[l_near]]-=1;
+    			if(freq[nums[l_near]]==0) distinct-=1;
+    			l_near+=1;
+    			l_far=l_near;
+    		}
+    		
+    		//finds the smallest valid window/subArray
+    		while(freq[nums[l_near]]>1) {
+    			freq[nums[l_near]]-=1;
+    			l_near+=1;
+    		}
+    		
+    		//got the smallest subArray with left far pointer either behind the left near pointer or at same index
+    		if(distinct==k) {
+    			count += l_near-l_far+1; //
+    		}
+    		
+    		r+=1;
+    	}
+    	
+    	return count;
+    }
     
     public static void main(String[] args) {
     	SubarraysWithKDifferentIntegers call = new SubarraysWithKDifferentIntegers();
@@ -102,7 +137,7 @@ public class SubarraysWithKDifferentIntegers {
 //    	System.out.println(call.subarraysWithKDistinct(nums, k));
 //    	System.out.println(call.subarraysWithKDistinctArraySol(nums, k));
 //    	System.out.println(call.calculateDistinctSubarrays3Pointer(nums, k));
-    	
+    	System.out.println(call.calculateDistinctSubarrays3PointerUsingArray(nums, k));
 	}
 }
 
