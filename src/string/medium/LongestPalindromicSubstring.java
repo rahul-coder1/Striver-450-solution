@@ -2,13 +2,14 @@ package string.medium;
 
 public class LongestPalindromicSubstring {
 	
+	//TC - o(n^3)
 	public static String longestPalindromeBrute(String s) {
 		String lps="";
 		int n=s.length();
 		
-		for(int i=0;i<n;i++) {
-			for(int j=i;j<n;j++) {
-				if(isPalindrome(s,i,j)) {
+		for(int i=0;i<n;i++) {// o(n)
+			for(int j=i;j<n;j++) {// o(n)
+				if(isPalindrome(s,i,j)) { //o(n)
 					if(j-i+1>lps.length()) {
 						lps=s.substring(i,j+1);
 					}
@@ -25,6 +26,8 @@ public class LongestPalindromicSubstring {
 		}
 		return true;
 	}
+	
+	//---------------------------------------------------------------------------------------------------------
 	
 	public static void main(String[] args) {
 		String[] str = {"babad","cbbd"};
