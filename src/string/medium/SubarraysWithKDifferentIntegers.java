@@ -105,7 +105,7 @@ public class SubarraysWithKDifferentIntegers {
     		if(freq[nums[r]]==1) distinct+=1; //handles no. of unique element
     		
     		//handles invalid subArray
-    		//handle the case when map size exceeds the k, that is more than k unique element present in map
+    		//handle the case when distinct element size exceeds the k, that is more than k unique element present in array
     		while(distinct>k) {
     			freq[nums[l_near]]-=1;
     			if(freq[nums[l_near]]==0) distinct-=1;
@@ -130,6 +130,23 @@ public class SubarraysWithKDifferentIntegers {
     	return count;
     }
     
+    //----------------------------------------------------------------------------------------------------------------
+    
+    //TC - o(n^2), SC - o(n)
+    public int subarraysWithKDistinctBrute(int[] nums, int k) {
+    	int n=nums.length, count=0;
+    	for(int i=0;i<n;i++) {
+    		Map<Integer,Integer> fmp = new HashMap<>();
+    		for(int j=i;j<n;j++) {
+    			fmp.put(nums[j], fmp.getOrDefault(nums[j], 0)+1);
+    			if(fmp.size()>k) break;
+    			else if(fmp.size()==k) count+=1;
+    		}
+    	}
+    	
+    	return count;
+    }
+    
     public static void main(String[] args) {
     	SubarraysWithKDifferentIntegers call = new SubarraysWithKDifferentIntegers();
     	int[] nums = {1,2,1,2,3}; 
@@ -137,7 +154,8 @@ public class SubarraysWithKDifferentIntegers {
 //    	System.out.println(call.subarraysWithKDistinct(nums, k));
 //    	System.out.println(call.subarraysWithKDistinctArraySol(nums, k));
 //    	System.out.println(call.calculateDistinctSubarrays3Pointer(nums, k));
-    	System.out.println(call.calculateDistinctSubarrays3PointerUsingArray(nums, k));
+//    	System.out.println(call.calculateDistinctSubarrays3PointerUsingArray(nums, k));
+    	System.out.println(call.subarraysWithKDistinctBrute(nums, k));
 	}
 }
 
