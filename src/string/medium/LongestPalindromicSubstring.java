@@ -30,6 +30,7 @@ public class LongestPalindromicSubstring {
 	//---------------------------------------------------------------------------------------------------------
 	//TC - o(n^2), SC - o(1)
     public static String longestPalindromeExpandAroundCenter(String s) {
+    	if(s==null || s.length()<2) return s; //base case
     	int start=0, maxLen=0, n= s.length();
     	for(int i=0;i<n;i++) {
     		
