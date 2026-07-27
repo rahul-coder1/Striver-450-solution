@@ -1,0 +1,54 @@
+package linkedList.OneD;
+
+
+public class InsertingANodeInLinkedList {
+	private static class Node{
+		public int value;
+		public Node next;
+		Node(int value, Node node){
+			this.value=value;
+			this.next = node;
+		}
+		Node(int value){
+			this.value=value;
+			this.next = null;
+		}
+	}
+	
+	private static Node linkedListForming(int[]arr) {
+		int n = arr.length;
+		Node head = new Node(arr[0]);
+		Node mover = head;
+		for(int i=1;i<n;i++) {
+			Node temp=new Node(arr[i]);
+			mover.next=temp;
+			mover=temp;
+		}
+		
+		return head;
+	}
+	//TC - o(1)
+	private static Node insertNodeAtHead(Node head, int val) {
+		Node node = new Node(val);
+		node.next = head;
+		head=node;
+		return head;
+	}
+	
+	private static void printLL(Node head) {
+		Node mover = head;
+		while(mover!=null) {
+			System.out.print(mover.value+" ");
+			mover=mover.next;
+		}
+		System.out.println();
+	}
+	
+	public static void main(String[] args) {
+		int[]arr= {1,2,3}; int insertAthead=7;
+		Node head = linkedListForming(arr);
+		printLL(head);
+		head = insertNodeAtHead(head,insertAthead);
+		printLL(head);
+	}
+}
