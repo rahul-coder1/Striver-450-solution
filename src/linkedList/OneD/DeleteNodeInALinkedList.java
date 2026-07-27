@@ -40,13 +40,17 @@ public class DeleteNodeInALinkedList {
     public static ListNode deleteKthNode(ListNode head, int k) {
     	int len=0;
     	ListNode mover = head;
+    	
+    	if(head==null) return head; //edge case
+    	
     	while(mover!=null) {
     		len+=1;
     		mover=mover.next;
     	}
-    	if(k>len) return null;
+    	
+    	if(k>len) return head; //another edge case
+    	
     	ListNode kthNodePrev=null;
-    	ListNode kthNode=null;
     	if(k==1) {
     		head=head.next;
     		return head;
@@ -55,11 +59,10 @@ public class DeleteNodeInALinkedList {
 	    	mover=head;
 	    	while(k>1) {
 	    		kthNodePrev=mover;
-	    		kthNode=mover.next;
 	    		mover=mover.next;
 	    		k-=1;
 	    	}
-	    	kthNodePrev.next = kthNode.next;
+	    	kthNodePrev.next = kthNodePrev.next.next; // or mover.next
     	}
     	
     	return head;
