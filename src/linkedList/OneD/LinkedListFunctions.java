@@ -44,11 +44,25 @@ final public class LinkedListFunctions {
 		System.out.println();
 	}
 	
+	//TC - o(n)
+	public static Node deleteTail(Node head) {
+		Node temp = head;
+		if(head==null || head.next==null) return null;
+		while(temp.next.next!=null) {
+			temp = temp.next;
+		}
+		temp.next=null;
+		
+		return head;
+	}
+	
 	public static void main(String[] args) {
-		int[]arr= {1,2,3}; int insertAthead=7;
+		int[]arr= {1,10,45,6,17}; int insertAthead=7;
 		Node head = linkedListForming(arr);
 		printLL(head);
-		head = insertNodeAtHead(head,insertAthead);
+		head = insertNodeAtHead(head,insertAthead); //#1.
+		printLL(head);
+		deleteTail(head); 	//#2.
 		printLL(head);
 	}
 }
