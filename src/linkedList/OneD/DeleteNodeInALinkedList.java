@@ -38,31 +38,25 @@ public class DeleteNodeInALinkedList {
 		System.out.println();
 	}
     public static ListNode deleteKthNode(ListNode head, int k) {
-    	int len=0;
-    	ListNode mover = head;
     	
     	if(head==null) return head; //edge case
     	
-    	while(mover!=null) {
-    		len+=1;
-    		mover=mover.next;
-    	}
-    	
-    	if(k>len) return head; //another edge case
-    	
-    	ListNode kthNodePrev=null;
     	if(k==1) {
     		head=head.next;
     		return head;
     	}
     	else {
-	    	mover=head;
-	    	while(k>1) {
+	    	ListNode kthNodePrev=null;
+	    	ListNode mover = head;
+	    	int count=0;
+	    	while(mover!=null) {
+	    		count+=1;
+	    		if(count==k) {
+	    			kthNodePrev.next = kthNodePrev.next.next;
+	    		}
 	    		kthNodePrev=mover;
 	    		mover=mover.next;
-	    		k-=1;
 	    	}
-	    	kthNodePrev.next = kthNodePrev.next.next; // or mover.next
     	}
     	
     	return head;
@@ -72,7 +66,7 @@ public class DeleteNodeInALinkedList {
     	ListNode head = DeleteNodeInALinkedList.linkedListForming(new int[] {1,4,6,7,9,10});
     	//deleteNode(head.next.next); //#1.
     	printLL(head);
-    	printLL(deleteKthNode(head, 5));
+    	printLL(deleteKthNode(head, 2));
     	
 	}
 }
