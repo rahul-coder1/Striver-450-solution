@@ -1,8 +1,8 @@
 package linkedList.OneD;
 
 
-public class InsertingANodeInLinkedList {
-	private static class Node{
+final public class LinkedListFunctions {
+	public static class Node{
 		public int value;
 		public Node next;
 		Node(int value, Node node){
@@ -15,8 +15,8 @@ public class InsertingANodeInLinkedList {
 		}
 	}
 	
-	private static Node linkedListForming(int[]arr) {
-		int n = arr.length;
+	public static Node linkedListForming(int[]arr) {
+		final int n = arr.length;
 		Node head = new Node(arr[0]);
 		Node mover = head;
 		for(int i=1;i<n;i++) {
@@ -28,14 +28,14 @@ public class InsertingANodeInLinkedList {
 		return head;
 	}
 	//TC - o(1)
-	private static Node insertNodeAtHead(Node head, int val) {
+	public static Node insertNodeAtHead(Node head, int val) {
 		Node node = new Node(val);
 		node.next = head;
 		head=node;
 		return head;
 	}
 	
-	private static void printLL(Node head) {
+	public static void printLL(Node head) {
 		Node mover = head;
 		while(mover!=null) {
 			System.out.print(mover.value+" ");
