@@ -37,11 +37,39 @@ public class DeleteNodeInALinkedList {
 		}
 		System.out.println();
 	}
+    public static ListNode deleteKthNode(ListNode head, int k) {
+    	int len=0;
+    	ListNode mover = head;
+    	while(mover!=null) {
+    		len+=1;
+    		mover=mover.next;
+    	}
+    	if(k>len) return null;
+    	ListNode kthNodePrev=null;
+    	ListNode kthNode=null;
+    	if(k==1) {
+    		head=head.next;
+    		return head;
+    	}
+    	else {
+	    	mover=head;
+	    	while(k>1) {
+	    		kthNodePrev=mover;
+	    		kthNode=mover.next;
+	    		mover=mover.next;
+	    		k-=1;
+	    	}
+	    	kthNodePrev.next = kthNode.next;
+    	}
+    	
+    	return head;
+    }
     
     public static void main(String[] args) {
     	ListNode head = DeleteNodeInALinkedList.linkedListForming(new int[] {1,4,6,7,9,10});
-    	deleteNode(head.next.next);
+    	//deleteNode(head.next.next); //#1.
     	printLL(head);
+    	printLL(deleteKthNode(head, 5));
     	
 	}
 }
