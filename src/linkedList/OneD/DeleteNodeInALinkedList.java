@@ -31,12 +31,15 @@ public class DeleteNodeInALinkedList {
 	}
 	public static void printLL(ListNode head) {
 		ListNode mover = head;
+		if(mover==null) System.out.println("Head is null");
 		while(mover!=null) {
 			System.out.print(mover.val+" ");
 			mover=mover.next;
 		}
 		System.out.println();
 	}
+	
+	//TC - o(k)
     public static ListNode deleteKthNode(ListNode head, int k) {
     	
     	if(head==null) return head; //edge case
@@ -53,6 +56,7 @@ public class DeleteNodeInALinkedList {
 	    		count+=1;
 	    		if(count==k) {
 	    			kthNodePrev.next = kthNodePrev.next.next;
+	    			break;
 	    		}
 	    		kthNodePrev=mover;
 	    		mover=mover.next;
@@ -62,11 +66,32 @@ public class DeleteNodeInALinkedList {
     	return head;
     }
     
+    //TC - o(n)
+    public static ListNode deleteElement(ListNode head, int value) {
+    	
+    	if(head==null) return head; //edge case
+    	
+    	if(head.val==value) {
+    		head=head.next;
+    		return head;
+    	}
+    	
+    	ListNode mover = head;
+    	while(mover.next!=null && mover.next.val!=value) {
+    		mover = mover.next;
+    	}
+    	if(mover.next!=null) {
+    		mover.next = mover.next.next;
+    	}
+    	return head;
+    }
+    
     public static void main(String[] args) {
     	ListNode head = DeleteNodeInALinkedList.linkedListForming(new int[] {1,4,6,7,9,10});
     	//deleteNode(head.next.next); //#1.
     	printLL(head);
-    	printLL(deleteKthNode(head, 2));
+//    	printLL(deleteKthNode(head, 2)); //#2.
+    	printLL(deleteElement(head, 10));
     	
 	}
 }

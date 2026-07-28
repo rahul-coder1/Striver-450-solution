@@ -35,6 +35,17 @@ final public class LinkedListFunctions {
 		return head;
 	}
 	
+	public static Node insertAtTail(Node head, int value) {
+		if(head==null) return head;
+		Node mover = head;
+		while(mover.next!=null) {
+			mover=mover.next;
+		}
+		Node tail = new Node(value);
+		mover.next=tail;
+		
+		return head;
+	}
 	public static void printLL(Node head) {
 		Node mover = head;
 		while(mover!=null) {
@@ -63,6 +74,8 @@ final public class LinkedListFunctions {
 		head = insertNodeAtHead(head,insertAthead); //#1.
 		printLL(head);
 		deleteTail(head); 	//#2.
+		printLL(head);
+		insertAtTail(head, 111);
 		printLL(head);
 	}
 }
