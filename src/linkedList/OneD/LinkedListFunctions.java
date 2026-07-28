@@ -29,14 +29,19 @@ final public class LinkedListFunctions {
 	}
 	//TC - o(1)
 	public static Node insertNodeAtHead(Node head, int val) {
+		
+		if(head==null) return new Node(val);
+		
 		Node node = new Node(val);
 		node.next = head;
 		head=node;
+		
 		return head;
 	}
 	
+	//TC - o(n)
 	public static Node insertAtTail(Node head, int value) {
-		if(head==null) return head;
+		if(head==null) return new Node(value);
 		Node mover = head;
 		while(mover.next!=null) {
 			mover=mover.next;
@@ -67,6 +72,54 @@ final public class LinkedListFunctions {
 		return head;
 	}
 	
+	public static Node insertAtKthPlace(Node head, int value, int k) {
+		if(head==null) return new Node(value);
+		Node kthNode = new Node(value);
+		Node mover = head;
+		
+		if(k==1) {
+			kthNode.next=head;
+			head = kthNode;
+			return head;
+		}
+		else {
+			int count=0;
+			Node prev=head;
+			while(prev!=null) {
+				count+=1;
+				if(count==k-1) {
+					kthNode.next = prev.next;
+					prev.next = kthNode;
+					break;
+				}
+				prev = prev.next;
+			}
+		}
+		
+		return head;
+	}
+	
+	public static Node insertBeforeValue(Node head, int ele, int value) {
+		if(head==null) return null;
+		else if(head.value == ele) {
+			head = new Node(value,head);
+			return head;
+		}
+		else {
+			Node prev = head;
+			while(prev.next!=null) {
+				if(prev.next.value==ele) {
+					Node insert = new Node(value,prev.next);
+					prev.next=insert;
+					break;
+				}
+				prev = prev.next;
+			}
+		}
+		
+		return head;
+		
+	}
 	public static void main(String[] args) {
 		int[]arr= {1,10,45,6,17}; int insertAthead=7;
 		Node head = linkedListForming(arr);
@@ -75,7 +128,9 @@ final public class LinkedListFunctions {
 		printLL(head);
 		deleteTail(head); 	//#2.
 		printLL(head);
-		insertAtTail(head, 111);
-		printLL(head);
+//		Node head = null;
+//		printLL(insertAtTail(head, 111)); //#3.
+//		printLL(insertAtKthPlace(head, -10, 8)); //#4.
+		printLL(insertBeforeValue(head, 11, -99)); //#5.
 	}
 }
