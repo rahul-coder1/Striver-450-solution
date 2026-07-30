@@ -35,6 +35,12 @@ public class DoublyLLFunctions {
 		return head;
 	}
 	
+	public static Node deleteHead(Node head) {
+		head = head.next;
+		
+		return head;
+	}
+	
 	public static void printDLL(Node head) {
 		if(head==null) log.info("head is empty");
 		Node current = head;
@@ -44,12 +50,14 @@ public class DoublyLLFunctions {
 			else System.out.print(current.data+" ");
 			current = current.next;
 		}
+		System.out.println();
 	}
 	
 	public static void main(String[] args) {
 		int[] arr = {10,20,30,40,50};
 		Node head = convertArrToDLL(arr);
 		printDLL(head); //#1
+		printDLL(deleteHead(head)); //#2
 	}
 }
 
