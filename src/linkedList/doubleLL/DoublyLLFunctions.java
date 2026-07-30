@@ -36,7 +36,24 @@ public class DoublyLLFunctions {
 	}
 	
 	public static Node deleteHead(Node head) {
+		if(head==null) return head;
+		Node prev = head;
 		head = head.next;
+		head.prev = null;
+		prev.next = null;
+		
+		return head;
+	}
+	
+	public static Node deleteTail(Node head) {
+		if(head==null || head.next==null) return null;
+		Node tail = head;
+		while(tail.next!=null) {
+			tail = tail.next;
+		}
+		Node prev = tail.prev;
+		tail.prev = null;
+		prev.next = null;
 		
 		return head;
 	}
@@ -54,10 +71,11 @@ public class DoublyLLFunctions {
 	}
 	
 	public static void main(String[] args) {
-		int[] arr = {10,20,30,40,50};
+		int[] arr = {10,20,30,40,50,60};
 		Node head = convertArrToDLL(arr);
 		printDLL(head); //#1
-		printDLL(deleteHead(head)); //#2
+//		printDLL(deleteHead(head)); //#2
+		printDLL(deleteTail(head)); //#3
 	}
 }
 
