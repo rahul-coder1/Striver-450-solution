@@ -58,6 +58,41 @@ public class DoublyLLFunctions {
 		return head;
 	}
 	
+	public static Node removeKthElement(Node head, int k) {
+		if(head==null) return head;
+		Node current = head;
+		int count=0;
+		while(current!=null) {
+			count+=1;
+			if(count==k) break;
+			current = current.next;
+		}
+		
+		if(current==null) return head; //if current goes out of bound i.e k>len(DLL)
+		
+		Node back = current.prev; Node front = current.next;
+		if(back==null && front ==null) {
+			head = null;
+		}
+		else if(back==null) {
+			Node prev = head;
+			head = head.next;
+			prev.next = null;
+			head.prev = null;
+		}
+		else if(front==null) {
+			current.prev=null;
+			back.next = null;
+		}
+		else {
+			current.next = null; current.prev = null;
+			back.next = front;
+			front.prev = back;
+		}
+		
+		return head;
+	}
+	
 	public static void printDLL(Node head) {
 		if(head==null) log.info("head is empty");
 		Node current = head;
@@ -75,7 +110,8 @@ public class DoublyLLFunctions {
 		Node head = convertArrToDLL(arr);
 		printDLL(head); //#1
 //		printDLL(deleteHead(head)); //#2
-		printDLL(deleteTail(head)); //#3
+//		printDLL(deleteTail(head)); //#3
+		printDLL(removeKthElement(head,7)); //#4
 	}
 }
 
