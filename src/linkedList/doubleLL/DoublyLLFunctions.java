@@ -132,6 +132,40 @@ public class DoublyLLFunctions {
 		
 		return head;
 	}
+	
+	public static Node insertBeforeKthElement(Node head, int value, int k) { // 1<=k<=N (N= len of DLL)
+		if(head==null) {
+			return new Node(value);
+		}else if(k==1) {
+			head = insertBeforeHead(head, value);
+		}
+		else {
+			Node temp = head;
+			int cnt=0;
+			while(temp!=null) {
+				cnt+=1;
+				if(cnt==k) break;
+				temp=temp.next;
+			}
+			if(temp==null) return head; //k> length of given DLL
+			
+			Node back = temp.prev;
+			Node kthNode = new Node(value,temp,back);
+			back.next = kthNode;
+			temp.prev = kthNode;
+		}
+		
+		return head;
+	}
+	
+	public static void insertBeforeNode(Node node, int val) { // 2 nodes min given and node is at min tail
+		if(node==null) return;
+		Node back = node.prev;
+		Node temp = new Node(val,node,back);
+		back.next = temp;
+		node.prev = temp;
+		
+	}
 	public static void printDLL(Node head) {
 		if(head==null) log.info("head is empty");
 		Node current = head;
@@ -145,7 +179,7 @@ public class DoublyLLFunctions {
 	}
 	
 	public static void main(String[] args) {
-		int[] arr = {10,20,30,40,50,60};
+		int[] arr = {10,20,30,40};
 		Node head = convertArrToDLL(arr);
 		printDLL(head); //#1
 //		printDLL(deleteHead(head)); //#2
@@ -155,7 +189,10 @@ public class DoublyLLFunctions {
 //		printDLL(head);
 //		printDLL(insertBeforeHead(head, -11)); //#6
 
-		printDLL(insertBeforeTail(head.next.next, 99)); //#6
+//		printDLL(insertBeforeTail(head.next.next, 99)); //#6
+//		printDLL(insertBeforeKthElement(head, 99,5)); //#6
+		insertBeforeNode(head.next.next.next,99); //#6
+		printDLL(head);
 	}
 }
 
