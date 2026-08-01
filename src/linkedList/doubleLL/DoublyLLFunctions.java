@@ -106,6 +106,16 @@ public class DoublyLLFunctions {
 			givenNode.prev = null;
 		}
 	}
+	
+	public static Node insertBeforeHead(Node head, int value) {
+		if(head==null) return head;
+		
+		Node newHead = new Node(value,head,null);
+		head.prev = newHead;
+		head = newHead;
+		
+		return head;
+	}
 	public static void printDLL(Node head) {
 		if(head==null) log.info("head is empty");
 		Node current = head;
@@ -125,8 +135,9 @@ public class DoublyLLFunctions {
 //		printDLL(deleteHead(head)); //#2
 //		printDLL(deleteTail(head)); //#3
 //		printDLL(removeKthElement(head,7)); //#4
-		deleteNode(head.next.next.next.next.next); //#5
-		printDLL(head);
+//		deleteNode(head.next.next.next.next.next); //#5
+//		printDLL(head);
+		printDLL(insertBeforeHead(head, -11)); //#6
 	}
 }
 
