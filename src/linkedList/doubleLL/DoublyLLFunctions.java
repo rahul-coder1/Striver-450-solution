@@ -93,6 +93,19 @@ public class DoublyLLFunctions {
 		return head;
 	}
 	
+	public static void deleteNode(Node givenNode) { //constraint is givenNode cannot be head
+		if(givenNode==null) return;
+		Node back = givenNode.prev; Node front = givenNode.next;
+		if(front == null) {
+			back.next = null;
+			givenNode.prev = null;	
+		}else {
+			back.next = front;
+			front.prev = back;
+			givenNode.next = null;
+			givenNode.prev = null;
+		}
+	}
 	public static void printDLL(Node head) {
 		if(head==null) log.info("head is empty");
 		Node current = head;
@@ -111,7 +124,9 @@ public class DoublyLLFunctions {
 		printDLL(head); //#1
 //		printDLL(deleteHead(head)); //#2
 //		printDLL(deleteTail(head)); //#3
-		printDLL(removeKthElement(head,7)); //#4
+//		printDLL(removeKthElement(head,7)); //#4
+		deleteNode(head.next.next.next.next.next); //#5
+		printDLL(head);
 	}
 }
 
