@@ -4,21 +4,6 @@ import java.util.logging.Logger;
 
 public class DoublyLLFunctions {
 	private static final Logger log = Logger.getLogger(DoublyLLFunctions.class.getName());
-	private static class Node{
-		int data;
-		Node next;
-		Node prev;
-		Node(int data){
-			this.data=data;
-			this.next = null;
-			this.prev = null;
-		}
-		Node(int data, Node next, Node prev){
-			this.data=data;
-			this.next = next;
-			this.prev = prev;
-		}
-	}
 	
 	public static Node convertArrToDLL(int[]arr) {
 		if(arr==null || arr.length==0) return null;

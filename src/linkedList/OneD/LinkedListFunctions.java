@@ -1,7 +1,7 @@
 package linkedList.OneD;
 
 
-final public class LinkedListFunctions {
+public final class LinkedListFunctions {
 	public static class Node{
 		public int value;
 		public Node next;
