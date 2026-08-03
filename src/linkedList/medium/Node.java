@@ -23,4 +23,13 @@ public class Node {
 		
 		return head;
 	}
+	
+	public static void printLL(Node head) {
+		Node mover = head;
+		while(mover!=null) {
+			System.out.print(mover.data+" ");
+			mover=mover.next;
+		}
+		System.out.println();
+	}
 }
