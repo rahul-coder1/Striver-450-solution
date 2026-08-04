@@ -11,7 +11,7 @@ public class LinkedListCycleDetectLoop {
 		if(head==null || head.next==null) return flag;
 		ListNode curr = head;
 		while(curr!=null) {
-			if(mp.getOrDefault(curr, 0)>1) {
+			if(mp.getOrDefault(curr, 0)==1) {
 				flag = true; 
 				break;
 			}else {
@@ -42,7 +42,7 @@ public class LinkedListCycleDetectLoop {
 	public static void main(String[] args) {
 		int[] arr = {10,20,30,40};
 		ListNode head = ListNode.linkedListForming(arr);
-		head.next.next.next.next = head;
+		head.next.next.next = head;
 		System.out.println(hasCycleBrute(head));
 	}
 }
