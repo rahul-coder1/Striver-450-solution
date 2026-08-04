@@ -36,6 +36,7 @@ public class ReverseALinkedList {
 		return prev;
 	}
 	
+	//TC - o(n), SC - o(n) this SC is due to recursive stack space
 	public static ListNode reverseListRecursion(ListNode head) {
 		
 		if(head==null || head.next==null) return head; //base case
