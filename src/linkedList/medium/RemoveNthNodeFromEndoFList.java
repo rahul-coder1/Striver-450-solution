@@ -27,11 +27,30 @@ public class RemoveNthNodeFromEndoFList {
         return head;
     }
     
+  //TC - o(len(ll)) depends only of fast pointer start to end movement
+    public static ListNode removeNthFromEndOptimal(ListNode head, int n) {
+        ListNode curr = head, slow=head, fast=head;
+        if(head==null) return head;
+        for(int i=0;i<n;i++){
+            fast=fast.next;
+            if(fast==null) break;
+        }
+        if(fast==null) return head.next; //edge case
+
+        while(fast.next!=null){
+            fast = fast.next; slow=slow.next;
+        }
+
+        slow.next = slow.next.next;
+
+        return head;
+    }
+    
     public static void main(String[] args) {
 		int[] arr = {1,2,3,4,5}; int n=6;
 		ListNode head = ListNode.linkedListForming(arr);
 		ListNode.printLL(head);
-		ListNode.printLL(removeNthFromEndBrute(head, n));
+		ListNode.printLL(removeNthFromEndOptimal(head, n));
 		
 	}
 }
