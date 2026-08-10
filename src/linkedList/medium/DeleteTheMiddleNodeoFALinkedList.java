@@ -2,7 +2,7 @@ package linkedList.medium;
 
 public class DeleteTheMiddleNodeoFALinkedList {
 	//TC - o(n+n/2)
-    public static ListNode deleteMiddle(ListNode head) {
+    public static ListNode deleteMiddleBrute(ListNode head) {
         
         if(head==null) return head;
         ListNode curr = head;
@@ -28,10 +28,36 @@ public class DeleteTheMiddleNodeoFALinkedList {
         return head;
     }
     
+    
+  //TC - o(n/2)
+    public static ListNode deleteMiddleOptimal(ListNode head) {
+        if(head==null || head.next==null) return null;
+        ListNode slow = head, fast = head.next.next; //moving fast 1 step ahead, same as skipping 1 step for slow
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        slow.next = slow.next.next;
+
+        return head;
+    }
+    
     public static void main(String[] args) {
-    	int[] arr = {1,2,3,4,5};
+    	int[] arr = {1,2,3};
 		ListNode head = ListNode.linkedListForming(arr);
 		ListNode.printLL(head);
-		ListNode.printLL(deleteMiddle(head));
+		ListNode.printLL(deleteMiddleOptimal(head));
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
