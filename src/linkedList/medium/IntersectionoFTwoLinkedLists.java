@@ -15,6 +15,7 @@ public class IntersectionoFTwoLinkedLists {
         curr = headB;
         while(curr!=null){
             mp.put(curr, mp.getOrDefault(curr,0)+1);
+            if(mp.get(curr)>1) return curr;
             curr = curr.next;
         }
         for(Map.Entry<ListNode, Integer> i: mp.entrySet()){
