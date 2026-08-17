@@ -53,6 +53,21 @@ public class IntersectionoFTwoLinkedLists {
     	return a;
     }
     
+    //TC - o(n1+n2)
+	public static ListNode getIntersectionNodeOptimal(ListNode headA, ListNode headB) {
+		if(headA==null || headB==null) return null;
+		ListNode t1 = headA, t2 = headB;
+		while(t1!=t2) {
+			t1 = t1.next;
+			t2 = t2.next;
+			if(t1==t2) return t1;
+			if(t1==null) t1 = headB;
+			if(t2==null) t2 = headA;
+		}
+		
+		return t1;
+	}
+    
     public static void main(String[] args) {
 		int[] arr = {1,2,3,4,5,6,7,8};
 		int[] arr2 = {1,2,3,4};
@@ -61,6 +76,6 @@ public class IntersectionoFTwoLinkedLists {
 		ListNode.printLL(head1);
 		head2.next.next.next.next = head1.next.next.next.next;
 		ListNode.printLL(head2);
-		System.out.print(getIntersectionNodeBetter(head1,head2).data);
+		System.out.print(getIntersectionNodeOptimal(head1,head2).data);
 	}
 }
