@@ -45,10 +45,33 @@ public class Add1ToLL {
         return head;
     }
     
+    public static int helper(ListNode temp) {
+    	if(temp==null) return 1;
+    	int carry = helper(temp.next);
+    	temp.data = temp.data+carry;
+    	if(temp.data<10) {
+    		return 0;
+    	}
+    	temp .data = 0;
+    	return 1;
+    }
+    
+    public static ListNode addOneoptimal(ListNode head) {
+    	if(head==null) return head;
+    	int carry = helper(head);
+    	if(carry==1) {
+    		ListNode nhead = new ListNode(1);
+    		nhead.next = head;
+    		return nhead;
+    	}
+    	
+    	return head;
+    }
+    
     public static void main(String[] args) {
-		int[] arr = {1,2,3};
+		int[] arr = {9,9,9};
 		ListNode head = ListNode.linkedListForming(arr);
 		ListNode.printLL(head);
-		ListNode.printLL(addOneBrute(head));
+		ListNode.printLL(addOneoptimal(head));
 	}
 }
