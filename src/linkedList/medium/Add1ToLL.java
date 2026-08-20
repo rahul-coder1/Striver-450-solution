@@ -56,6 +56,7 @@ public class Add1ToLL {
     	return 1;
     }
     
+    //TC - o(n), SC - o(n) - recursive stack space
     public static ListNode addOneoptimal(ListNode head) {
     	if(head==null) return head;
     	int carry = helper(head);
