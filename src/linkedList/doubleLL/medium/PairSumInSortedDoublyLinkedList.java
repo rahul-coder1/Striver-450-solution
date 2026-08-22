@@ -30,6 +30,7 @@ public class PairSumInSortedDoublyLinkedList {
         return temp;
     }
 	
+	//TC - o(2n)
 	public static List<List<Integer>> givenSumPairsOptimal(ListNode head, int target) {
 		List<List<Integer>> arr = new ArrayList<>();
         ListNode left = head;
