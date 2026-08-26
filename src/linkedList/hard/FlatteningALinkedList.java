@@ -71,6 +71,32 @@ public class FlatteningALinkedList {
     
     //=======================================================================
     
+  //TC - o(N*logK), SC - o(k), N - total ListNode, K - pq size
+    public static ListNode flattenMostOptimal(ListNode head) {
+        if(head==null || head.next==null) return head;
+        
+        PriorityQueue<ListNode> pq = new PriorityQueue<>((a,b)-> a.data-b.data);
+        ListNode curr = head;
+        while(curr!=null){
+            pq.offer(curr);
+            curr = curr.next;
+        }
+        
+        ListNode dummy = new ListNode(-1);
+        curr = dummy;
+        while(!pq.isEmpty()){
+            ListNode ListNode = pq.poll();
+            if(ListNode.bottom!=null){
+                pq.offer(ListNode.bottom);
+            }
+            curr.bottom = ListNode;
+            curr = ListNode;
+            curr.next = null;
+        }
+        
+        return dummy.bottom;
+    }
+    
     public static ListNode addBottom(ListNode head) {
     	ListNode temp = head;
     	temp.bottom = new ListNode(5);
@@ -88,6 +114,6 @@ public class FlatteningALinkedList {
 		ListNode.printLL(head);
 		head = addBottom(head);
 		
-		ListNode.printLLDown(flattenOptimal(head));
+		ListNode.printLLDown(flattenMostOptimal(head));
 	}
 }
