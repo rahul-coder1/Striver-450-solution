@@ -6,13 +6,15 @@ public class ListNode {
 	public int data;
 	public ListNode next;
 	public ListNode bottom;
+	public ListNode random;
 	ListNode(int data){
 		this.data = data;
 	}
-	ListNode(int data, ListNode next, ListNode bottom){
+	ListNode(int data, ListNode next, ListNode bottom, ListNode random){
 		this.data = data;
 		this.next = next;
 		this.bottom = bottom;
+		this.random = random;
 	}
 	
 	public static ListNode linkedListForming(int[]arr) {
