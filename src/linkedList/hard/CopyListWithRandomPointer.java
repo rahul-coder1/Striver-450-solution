@@ -3,7 +3,7 @@ import java.util.*;
 
 public class CopyListWithRandomPointer {
 	//TC - o(n+n), SC - o(n) + o(n)=for answer LL
-    public static ListNode copyRandomList(ListNode head) {
+    public static ListNode copyRandomListBrute(ListNode head) {
         if(head==null) return head;
         ListNode temp = head;
         Map<ListNode,ListNode> mp = new HashMap<>();
@@ -21,6 +21,52 @@ public class CopyListWithRandomPointer {
         }
 
         return mp.get(head);
+    }
+    
+//    ===================================================================================================
+    public static ListNode copyRandomListOptimal(ListNode head) {
+    	if(head==null) return head;
+
+    	insertCopyNodeInBetween(head);
+    	connectRandomPointers(head);
+
+    	return copyLLHead(head);
+    }
+    /**
+    *function to connect next pointers
+    */
+    public static ListNode copyLLHead(ListNode head){
+    	ListNode curr = head;
+    	ListNode dNode = new ListNode(-1); 
+    	ListNode res = dNode;
+    	while(curr!=null){
+    		res.next = curr.next;
+    		curr.next = curr.next.next;
+    		res = res.next;
+    		curr = curr.next;
+    	}
+
+    	return dNode.next;
+    }
+    public static void connectRandomPointers(ListNode head){
+    	ListNode curr = head;
+    	while(curr!=null){
+    		ListNode copyNode = curr.next;
+    		if(curr.random!=null)
+    			copyNode.random = curr.random.next;
+    		else copyNode.random = null;
+
+    		curr = curr.next.next;
+    	}
+    }
+    public static void insertCopyNodeInBetween(ListNode head){
+    	ListNode curr = head;
+    	while(curr!=null){
+    		ListNode ListNode = new ListNode(curr.data);
+    		ListNode.next = curr.next;
+    		curr.next = ListNode;
+    		curr = ListNode.next;
+    	}
     }
     
     public static void printListWithRandom(ListNode head) {
@@ -73,7 +119,7 @@ public class CopyListWithRandomPointer {
         System.out.println("Original List:");
         printListWithRandom(head);
 
-        ListNode copiedHead = copyRandomList(head);
+        ListNode copiedHead = copyRandomListOptimal(head);
 
         System.out.println("\nCopied List:");
         printListWithRandom(copiedHead);
