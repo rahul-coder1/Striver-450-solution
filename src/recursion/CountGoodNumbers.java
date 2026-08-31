@@ -13,16 +13,15 @@ public class CountGoodNumbers {
     public static long pow(long x,long n){
         final long MOD = 1_000_000_007;
         long res = 1;
-        if(n==0) return 1;
-        while(n>1){
+        while(n>0){
             if(n%2==1){
-                res = res*x%MOD;
+                res = (res*x)%MOD;
             }
             n=n/2;
             x=(x*x)%MOD;
         }
 
-        return res*x%MOD;
+        return res;
     }
     
     public static void main(String[] args) {
