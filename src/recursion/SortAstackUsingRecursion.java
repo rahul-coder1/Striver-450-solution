@@ -12,7 +12,7 @@ public class SortAstackUsingRecursion {
         sort(top,st);
     }
     
-    private static void sort(int top, Stack<Integer>st){
+    public static void sort(int top, Stack<Integer>st){
         if(st.isEmpty()) st.push(top);
         else{
             if(st.peek()>top){
@@ -25,12 +25,13 @@ public class SortAstackUsingRecursion {
         }
         
     }
-    private static void insertInStack(int[] arr, Stack<Integer> st) {
+    public static void insertInStack(int[] arr, Stack<Integer> st) {
     	for(int i:arr) {
     		st.push(i);
     	}
     }
-    private static void printStack(Stack<Integer> st) {
+    public static void printStack(Stack<Integer> st) {
+    	System.out.print("top->");
     	for(int i=st.size()-1;i>=0;i--) {
     		System.out.print(st.get(i)+" ");
     	}
