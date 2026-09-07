@@ -21,7 +21,7 @@ public class SubSequencesPowerSet {
         op.add(arr[idx]);
         //take
         generate(idx+1,arr,op,res);
-        //backtrack
+        //backtrack 
         op.remove(op.size()-1);
     }
     
