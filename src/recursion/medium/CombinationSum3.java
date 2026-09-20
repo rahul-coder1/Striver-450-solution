@@ -2,6 +2,7 @@ package recursion.medium;
 import java.util.*;
 
 public class CombinationSum3 {
+	//TC - O(2^9 + k·x)k-length with x unique combination , SC - o(k.x)+o(9-recursion depth), o(k) - op 
 	public static List<List<Integer>> combinationSum3(int k, int n) {
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> op = new ArrayList<>();
@@ -29,6 +30,7 @@ public class CombinationSum3 {
     
     public static void main(String[] args) {
 		System.out.println(combinationSum3(9, 45));
+		System.out.println(combinationSum3(2, 6));
 	}
 }
 
