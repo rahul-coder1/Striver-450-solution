@@ -35,6 +35,7 @@ public class LetterCombinationsPhoneNumber {
 	
 	public static void main(String[] args) {
 		System.out.println(letterCombinations("23"));
+		System.out.println(letterCombinations("94"));
 	}
 }
 
