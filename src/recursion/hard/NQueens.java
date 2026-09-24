@@ -68,7 +68,51 @@ public class NQueens {
         return op;
     }
     
+    //-------------------------------------
+    
+  //TC - o(N*N! + S*N^2), N! comes from solve() recursive search
+    //SC - o(s*n^2 - res) + o(n^2 - board)+o(n) - stack + o(n^2) - op store + o(n - for 3 hash arrays)
+    public static List<List<String>> solveNQueensOptimal(int n) {
+        List<List<String>> res = new ArrayList<>();
+        char[][] board = new char[n][n];
+        int[] leftRow = new int[n];
+        int[] upperLDiagonal = new int[2*n-1];
+        int[] lowerLDiagonal = new int[2*n-1];
+        for(char[] row: board){
+            Arrays.fill(row,'.');
+        }
+
+        solveOptimal(0, board, res, n,leftRow,upperLDiagonal,lowerLDiagonal);
+
+        return res;
+    }
+    
+    static void solveOptimal(int col, char[][] board, List<List<String>> res, int n, int[] leftRow,
+            int[]upperLDiagonal, int[]lowerLDiagonal){
+    	
+		if(col>=n){
+		    res.add(convertToStringList(board));
+		    return;
+		}
+		
+		for(int row=0; row<n; row++){
+		    if(leftRow[row]==0 && upperLDiagonal[row+col]==0 && lowerLDiagonal[n-1 + col-row]==0){
+		        board[row][col] = 'Q';
+		        leftRow[row]=1;
+		        upperLDiagonal[row+col]=1;
+		        lowerLDiagonal[n-1 + col-row]=1;
+		        solveOptimal(col+1,board,res,n,leftRow,upperLDiagonal,lowerLDiagonal);
+		        //backtrack
+		        board[row][col]='.';
+		        leftRow[row]=0;
+		        upperLDiagonal[row+col]=0;
+		        lowerLDiagonal[n-1 + col-row]=0;
+		    }
+		}
+	}
+    
     public static void main(String[] args) {
 		System.out.println(solveNQueensBetter(4));
+		System.out.println(solveNQueensOptimal(4));
 	}
 }
