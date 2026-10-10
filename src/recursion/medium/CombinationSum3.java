@@ -19,7 +19,7 @@ public class CombinationSum3 {
             }
             return;
         }
-        if(i>9) return;
+        if(i>3) return;
         //dont take
         generate(i+1,k,sum,n,op,res);
         //take
@@ -30,7 +30,7 @@ public class CombinationSum3 {
     
     public static void main(String[] args) {
 		System.out.println(combinationSum3(9, 45));
-		System.out.println(combinationSum3(2, 6));
+		System.out.println(combinationSum3(2, 4));
 	}
 }
 
